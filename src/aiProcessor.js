@@ -37,6 +37,63 @@ function buildUserPrompt(messageText, urls, googleFormLinks, emails) {
   return prompt;
 }
 
+// ── Helpers ─────────────────────────────────────────────────────────────────
+
+const sleep = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
+
+/**
+ * Retries a function with exponential backoff for 429 errors.
+ */
+async function withRetry(fn, maxAttempts = 5) {
+  let lastError;
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    try {
+      return await fn();
+    } catch (err) {
+      lastError = err;
+      const isRateLimit = err.message?.includes('429') || err.status === 429 || err.code === 'rate_limit_exceeded';
+      const isQuotaExceeded = err.message?.includes('quota') || err.message?.includes('limit: 0');
+
+      if (isQuotaExceeded) {
+        throw new Error(`Daily quota exhausted: ${err.message}`);
+      }
+
+      if (isRateLimit && attempt < maxAttempts) {
+        const delay = Math.pow(2, attempt) * 1000;
+        logger.warn(`Rate limit hit (attempt ${attempt}/${maxAttempts}). Retrying in ${delay / 1000}s...`);
+        await sleep(delay);
+        continue;
+      }
+      throw err;
+    }
+  }
+}
+
+// ── OpenRouter Provider ─────────────────────────────────────────────────────
+
+async function processWithOpenRouter(config, userPrompt) {
+  const client = new OpenAI({
+    apiKey: config.openrouterKey,
+    baseURL: 'https://openrouter.ai/api/v1',
+    defaultHeaders: {
+      'HTTP-Referer': 'https://github.com/rachit367/telegram-scrapper',
+      'X-Title': 'Telegram Intern Bot',
+    },
+  });
+
+  const response = await client.chat.completions.create({
+    model: config.openrouterModel,
+    temperature: 0.1,
+    response_format: { type: 'json_object' },
+    messages: [
+      { role: 'system', content: SYSTEM_PROMPT },
+      { role: 'user',   content: userPrompt },
+    ],
+  });
+
+  return response.choices[0].message.content;
+}
+
 // ── OpenAI Provider ─────────────────────────────────────────────────────────
 
 async function processWithOpenAI(apiKey, userPrompt) {
@@ -79,24 +136,21 @@ async function processWithGemini(apiKey, userPrompt) {
 /**
  * Send a Telegram message to the configured AI provider and return structured
  * internship data.
- *
- * @param {object}   config            – ai config block
- * @param {string}   messageText       – raw Telegram message
- * @param {string[]} urls              – all extracted URLs
- * @param {string[]} googleFormLinks   – Google Form links (priority for apply_link)
- * @param {string[]} emails            – extracted emails
- * @returns {Promise<Array<object>>}   – array of internship objects
  */
 async function extractInternships(config, messageText, urls, googleFormLinks, emails) {
   const userPrompt = buildUserPrompt(messageText, urls, googleFormLinks, emails);
 
   let rawJson;
   try {
-    if (config.provider === 'openai') {
-      rawJson = await processWithOpenAI(config.openaiKey, userPrompt);
-    } else {
-      rawJson = await processWithGemini(config.geminiKey, userPrompt);
-    }
+    await withRetry(async () => {
+      if (config.provider === 'openai') {
+        rawJson = await processWithOpenAI(config.openaiKey, userPrompt);
+      } else if (config.provider === 'openrouter') {
+        rawJson = await processWithOpenRouter(config, userPrompt);
+      } else {
+        rawJson = await processWithGemini(config.geminiKey, userPrompt);
+      }
+    });
   } catch (err) {
     logger.error(`AI processing failed: ${err.message}`);
     return [];
@@ -106,6 +160,8 @@ async function extractInternships(config, messageText, urls, googleFormLinks, em
   let parsed;
   try {
     parsed = JSON.parse(rawJson);
+    // OpenRouter/OpenAI might return { "internships": [...] }
+    if (parsed.internships) parsed = parsed.internships;
   } catch {
     logger.error('Failed to parse AI JSON response:', rawJson);
     return [];

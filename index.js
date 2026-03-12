@@ -3,12 +3,12 @@ const logger = require('./src/logger');
 const { authenticate, fetchMessages } = require('./src/telegramClient');
 const { extractGoogleFormLinks, extractAllUrls, extractEmails } = require('./src/linkExtractor');
 const { extractInternships } = require('./src/aiProcessor');
-const { appendInternship } = require('./src/markdownGenerator');
+const { appendInternship, appendRawMessage } = require('./src/markdownGenerator');
 
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function processMessages(client) {
-  const messages = await fetchMessages(client, config.telegram.channel, config.messageLimit);
+  const messages = await fetchMessages(client, config.telegram.channel);
 
   if (messages.length === 0) {
     logger.warn('No text messages found in the channel.');
@@ -17,9 +17,20 @@ async function processMessages(client) {
 
   let added = 0;
   let skipped = 0;
+  const isRawMode = config.processMode === 'raw';
+
+  if (isRawMode) {
+    logger.info('🛠️  Operating in RAW mode (skipping AI extraction)');
+  }
 
   for (const msg of messages) {
     logger.info(`\n── Processing message #${msg.id} (${msg.date.toISOString()}) ──`);
+
+    if (isRawMode) {
+      appendRawMessage(msg);
+      added++;
+      continue;
+    }
 
     // 1. Extract links & emails from message text
     const googleFormLinks = extractGoogleFormLinks(msg.text);

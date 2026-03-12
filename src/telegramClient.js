@@ -34,30 +34,79 @@ async function authenticate(config) {
 }
 
 /**
- * Fetch recent messages from a channel or group.
- *
- * @param {TelegramClient} client
- * @param {string}         channelUsername – e.g. "mychannel" (without @)
- * @param {number}         limit
- * @returns {Array<{ id: number, text: string, date: Date }>}
+ * Get the start of today in UTC (midnight IST = 18:30 UTC previous day).
+ * Environment-independent calculation using milliseconds.
  */
-async function fetchMessages(client, channelUsername, limit = 50) {
-  logger.info(`Fetching up to ${limit} messages from "${channelUsername}"...`);
+function getTodayStartUTC() {
+  const msPerDay = 24 * 60 * 60 * 1000;
+  const istOffset = 5.5 * 60 * 60 * 1000;
+  
+  const now = Date.now();
+  const istNow = now + istOffset;
+  const istMidnight = Math.floor(istNow / msPerDay) * msPerDay;
+  const todayStartUTC = istMidnight - istOffset;
+  
+  return new Date(todayStartUTC);
+}
 
-  const entity = await client.getEntity(channelUsername);
-  const messages = await client.getMessages(entity, { limit });
+/**
+ * Fetch today's messages from a channel or group.
+ * Iterates in batches until messages older than today are found.
+ */
+async function fetchMessages(client, channelIdentifier, batchSize = 100) {
+  const todayStart = getTodayStartUTC();
+  logger.info(`Fetching messages since ${todayStart.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} (IST)`);
 
-  // Return only text messages (skip service / media-only messages)
-  const textMessages = messages
-    .filter((m) => m.message && m.message.trim().length > 0)
-    .map((m) => ({
-      id:   m.id,
-      text: m.message,
-      date: new Date(m.date * 1000),
-    }));
+  let entity;
+  try {
+    const trimmed = String(channelIdentifier).trim();
+    if (/^-?\d+$/.test(trimmed)) {
+      entity = await client.getEntity(BigInt(trimmed));
+    } else {
+      entity = await client.getEntity(trimmed);
+    }
+  } catch (err) {
+    logger.error(`Failed to find group/channel "${channelIdentifier}": ${err.message}`);
+    return [];
+  }
 
-  logger.info(`Retrieved ${textMessages.length} text messages.`);
-  return textMessages;
+  const allTextMessages = [];
+  let offsetId = 0;
+  let reachedOlderMessages = false;
+  let totalProcessed = 0;
+
+  while (!reachedOlderMessages) {
+    const batch = await client.getMessages(entity, {
+      limit: batchSize,
+      offsetId,
+    });
+
+    if (batch.length === 0) break;
+
+    for (const m of batch) {
+      totalProcessed++;
+      const msgDate = new Date(m.date * 1000);
+
+      if (msgDate < todayStart) {
+        reachedOlderMessages = true;
+        break;
+      }
+
+      if (m.message && m.message.trim().length > 0) {
+        allTextMessages.push({
+          id:   m.id,
+          text: m.message,
+          date: msgDate,
+        });
+      }
+    }
+
+    if (reachedOlderMessages) break;
+    offsetId = batch[batch.length - 1].id;
+  }
+
+  logger.info(`Scanned ${totalProcessed} messages. Found ${allTextMessages.length} text messages from today.`);
+  return allTextMessages;
 }
 
 module.exports = { authenticate, fetchMessages };
