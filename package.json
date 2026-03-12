@@ -1,0 +1,21 @@
+{
+  "name": "intern-bot",
+  "version": "1.0.0",
+  "description": "Telegram internship channel scraper with AI-powered data extraction",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node --test tests/*.test.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "@google/generative-ai": "^0.24.1",
+    "dotenv": "^17.3.1",
+    "input": "^1.0.1",
+    "openai": "^6.27.0",
+    "telegram": "^2.26.22"
+  }
+}
