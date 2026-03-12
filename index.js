@@ -2,8 +2,8 @@ const config = require('./src/config');
 const logger = require('./src/logger');
 const { authenticate, fetchMessages } = require('./src/telegramClient');
 const { extractGoogleFormLinks, extractAllUrls, extractEmails } = require('./src/linkExtractor');
-const { extractInternships } = require('./src/aiProcessor');
-const { appendInternship, appendRawMessage } = require('./src/markdownGenerator');
+const { checkBatchMatch } = require('./src/aiProcessor');
+const { appendFilteredRawMessage } = require('./src/markdownGenerator');
 
 // ─────────────────────────────────────────────────────────────────────────────
 
@@ -16,54 +16,27 @@ async function processMessages(client) {
   }
 
   let added = 0;
-  let skipped = 0;
-  const isRawMode = config.processMode === 'raw';
+  let matches = 0;
 
-  if (isRawMode) {
-    logger.info('🛠️  Operating in RAW mode (skipping AI extraction)');
-  }
+  logger.info(`🔍  Filtering for Target Batch: ${config.targetBatch}`);
 
   for (const msg of messages) {
-    logger.info(`\n── Processing message #${msg.id} (${msg.date.toISOString()}) ──`);
+    logger.info(`\n── Checking message #${msg.id} (${msg.date.toISOString()}) ──`);
 
-    if (isRawMode) {
-      appendRawMessage(msg);
-      added++;
-      continue;
-    }
+    // Use AI to check if it's a match for the target batch
+    const { isMatch, reason } = await checkBatchMatch(config, msg.text);
 
-    // 1. Extract links & emails from message text
-    const googleFormLinks = extractGoogleFormLinks(msg.text);
-    const allUrls         = extractAllUrls(msg.text);
-    const emails          = extractEmails(msg.text);
-
-    if (googleFormLinks.length > 0) {
-      logger.info(`  Google Form link(s): ${googleFormLinks.join(', ')}`);
-    }
-
-    // 2. Send to AI for structured extraction
-    const internships = await extractInternships(
-      config.ai,
-      msg.text,
-      allUrls,
-      googleFormLinks,
-      emails
-    );
-
-    if (internships.length === 0) {
-      logger.warn('  AI returned no internships for this message.');
-      continue;
-    }
-
-    // 3. Append each internship to Markdown (with dedup)
-    for (const internship of internships) {
-      const wasAdded = appendInternship(internship);
+    if (isMatch) {
+      matches++;
+      logger.success(`  ✅ MATCH: ${reason}`);
+      const wasAdded = appendFilteredRawMessage(msg, reason);
       if (wasAdded) added++;
-      else skipped++;
+    } else {
+      logger.info(`  ❌ SKIP: ${reason}`);
     }
   }
 
-  logger.success(`\nDone! Added: ${added} | Skipped (duplicates): ${skipped}`);
+  logger.success(`\nDone! Scanned ${messages.length} | Matches found: ${matches} | New entries saved: ${added}`);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────

@@ -4,37 +4,20 @@ const logger = require('./logger');
 
 // ── Prompt ──────────────────────────────────────────────────────────────────
 
-const SYSTEM_PROMPT = `You are an internship data extractor. You receive the raw text of a Telegram post about internship opportunities.
+const SYSTEM_PROMPT = `You are a strict filtering assistant. Your job is to determine if a Telegram post describes an internship or job opportunity specifically for a target graduation batch.
 
-Your task:
-1. Extract EVERY distinct internship mentioned in the message.
-2. For each internship return a JSON object with these fields:
-   - company   (string | null)
-   - domain    (string | null) — choose the closest match from: Web Development, Frontend Development, Backend Development, Full Stack, AI / Machine Learning, Data Science, Android Development, Marketing, Design, Business, DevOps, Cybersecurity, Cloud Computing, Mobile Development, Other
-   - stipend   (string | null) — copy exactly as written
-   - apply_link (string | null) — application URL
-   - email     (string | null)
+Instructions:
+1. Examine the message text to see if it mentions the target batch.
+2. If the message explicitly mentions the target batch OR implies it (e.g., "for 2027 grads", "Batch: 2027"), set "isMatch" to true.
+3. If the message is for a different batch, or does NOT specify a batch that includes the target, set "isMatch" to false.
+4. If it's a general hiring post that DOES NOT mention any batch, set "isMatch" to false (we only want specific matches).
 
-3. If a field is not available, set it to null.
-4. Return ONLY a JSON array of objects. No markdown, no explanation.
+Return ONLY a JSON object with:
+- "isMatch": boolean
+- "reason": string (short explanation)`;
 
-Example output:
-[{"company":"Acme Corp","domain":"Web Development","stipend":"₹20000/month","apply_link":"https://forms.gle/abc","email":"hr@acme.com"}]`;
-
-function buildUserPrompt(messageText, urls, googleFormLinks, emails) {
-  let prompt = `Telegram message:\n\n${messageText}\n\n`;
-
-  if (urls.length > 0) {
-    prompt += `Extracted URLs:\n${urls.join('\n')}\n\n`;
-  }
-  if (googleFormLinks.length > 0) {
-    prompt += `Google Form links (MUST be used as apply_link):\n${googleFormLinks.join('\n')}\n\n`;
-  }
-  if (emails.length > 0) {
-    prompt += `Extracted emails:\n${emails.join('\n')}\n\n`;
-  }
-
-  return prompt;
+function buildUserPrompt(targetBatch, messageText) {
+  return `Target Batch: ${targetBatch}\n\nTelegram message:\n\n${messageText}`;
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────────────
@@ -69,7 +52,7 @@ async function withRetry(fn, maxAttempts = 5) {
   }
 }
 
-// ── OpenRouter Provider ─────────────────────────────────────────────────────
+// ── Providers ────────────────────────────────────────────────────────────────
 
 async function processWithOpenRouter(config, userPrompt) {
   const client = new OpenAI({
@@ -83,7 +66,7 @@ async function processWithOpenRouter(config, userPrompt) {
 
   const response = await client.chat.completions.create({
     model: config.openrouterModel,
-    temperature: 0.1,
+    temperature: 0,
     response_format: { type: 'json_object' },
     messages: [
       { role: 'system', content: SYSTEM_PROMPT },
@@ -93,15 +76,13 @@ async function processWithOpenRouter(config, userPrompt) {
 
   return response.choices[0].message.content;
 }
-
-// ── OpenAI Provider ─────────────────────────────────────────────────────────
 
 async function processWithOpenAI(apiKey, userPrompt) {
   const client = new OpenAI({ apiKey });
 
   const response = await client.chat.completions.create({
     model: 'gpt-4o-mini',
-    temperature: 0.1,
+    temperature: 0,
     response_format: { type: 'json_object' },
     messages: [
       { role: 'system', content: SYSTEM_PROMPT },
@@ -112,14 +93,12 @@ async function processWithOpenAI(apiKey, userPrompt) {
   return response.choices[0].message.content;
 }
 
-// ── Gemini Provider ─────────────────────────────────────────────────────────
-
 async function processWithGemini(apiKey, userPrompt) {
   const genAI = new GoogleGenerativeAI(apiKey);
   const model = genAI.getGenerativeModel({
     model: 'gemini-2.0-flash',
     generationConfig: {
-      temperature: 0.1,
+      temperature: 0,
       responseMimeType: 'application/json',
     },
   });
@@ -134,52 +113,38 @@ async function processWithGemini(apiKey, userPrompt) {
 // ── Public API ──────────────────────────────────────────────────────────────
 
 /**
- * Send a Telegram message to the configured AI provider and return structured
- * internship data.
+ * Check if a message matches the target batch using AI.
+ * Returns { isMatch: boolean, reason: string }
  */
-async function extractInternships(config, messageText, urls, googleFormLinks, emails) {
-  const userPrompt = buildUserPrompt(messageText, urls, googleFormLinks, emails);
+async function checkBatchMatch(config, messageText) {
+  const userPrompt = buildUserPrompt(config.targetBatch, messageText);
 
   let rawJson;
   try {
     await withRetry(async () => {
-      if (config.provider === 'openai') {
-        rawJson = await processWithOpenAI(config.openaiKey, userPrompt);
-      } else if (config.provider === 'openrouter') {
-        rawJson = await processWithOpenRouter(config, userPrompt);
+      if (config.ai.provider === 'openai') {
+        rawJson = await processWithOpenAI(config.ai.openaiKey, userPrompt);
+      } else if (config.ai.provider === 'openrouter') {
+        rawJson = await processWithOpenRouter(config.ai, userPrompt);
       } else {
-        rawJson = await processWithGemini(config.geminiKey, userPrompt);
+        rawJson = await processWithGemini(config.ai.geminiKey, userPrompt);
       }
     });
   } catch (err) {
     logger.error(`AI processing failed: ${err.message}`);
-    return [];
+    return { isMatch: false, reason: 'AI error' };
   }
 
-  // Parse the response
-  let parsed;
   try {
-    parsed = JSON.parse(rawJson);
-    // OpenRouter/OpenAI might return { "internships": [...] }
-    if (parsed.internships) parsed = parsed.internships;
+    const parsed = JSON.parse(rawJson);
+    return {
+      isMatch: !!parsed.isMatch,
+      reason:  parsed.reason || 'No reason provided',
+    };
   } catch {
     logger.error('Failed to parse AI JSON response:', rawJson);
-    return [];
+    return { isMatch: false, reason: 'Parse error' };
   }
-
-  // Normalise: could be a single object or an array
-  const internships = Array.isArray(parsed) ? parsed : [parsed];
-
-  // Enforce Google Form link override
-  if (googleFormLinks.length > 0) {
-    for (const internship of internships) {
-      if (!internship.apply_link || !googleFormLinks.includes(internship.apply_link)) {
-        internship.apply_link = googleFormLinks[0];
-      }
-    }
-  }
-
-  return internships;
 }
 
-module.exports = { extractInternships };
+module.exports = { checkBatchMatch };

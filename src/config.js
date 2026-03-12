@@ -4,7 +4,6 @@ const path = require('path');
 dotenv.config({ path: path.resolve(__dirname, '..', '.env') });
 
 const required = ['TELEGRAM_API_ID', 'TELEGRAM_API_HASH', 'TELEGRAM_PHONE', 'TELEGRAM_CHANNEL'];
-const processMode = (process.env.PROCESS_MODE || 'llm').toLowerCase();
 
 for (const key of required) {
   if (!process.env[key]) {
@@ -16,23 +15,22 @@ for (const key of required) {
 
 const aiProvider = (process.env.AI_PROVIDER || 'gemini').toLowerCase();
 
-if (processMode === 'llm') {
-  if (aiProvider === 'openai' && !process.env.OPENAI_API_KEY) {
-    console.error('❌  AI_PROVIDER is "openai" but OPENAI_API_KEY is not set.');
-    process.exit(1);
-  }
-  if (aiProvider === 'gemini' && !process.env.GEMINI_API_KEY) {
-    console.error('❌  AI_PROVIDER is "gemini" but GEMINI_API_KEY is not set.');
-    process.exit(1);
-  }
-  if (aiProvider === 'openrouter' && !process.env.OPENROUTER_API_KEY) {
-    console.error('❌  AI_PROVIDER is "openrouter" but OPENROUTER_API_KEY is not set.');
-    process.exit(1);
-  }
+// AI keys are now always required since we only use AI mode
+if (aiProvider === 'openai' && !process.env.OPENAI_API_KEY) {
+  console.error('❌  AI_PROVIDER is "openai" but OPENAI_API_KEY is not set.');
+  process.exit(1);
+}
+if (aiProvider === 'gemini' && !process.env.GEMINI_API_KEY) {
+  console.error('❌  AI_PROVIDER is "gemini" but GEMINI_API_KEY is not set.');
+  process.exit(1);
+}
+if (aiProvider === 'openrouter' && !process.env.OPENROUTER_API_KEY) {
+  console.error('❌  AI_PROVIDER is "openrouter" but OPENROUTER_API_KEY is not set.');
+  process.exit(1);
 }
 
 module.exports = {
-  processMode,
+  targetBatch: process.env.TARGET_BATCH || '2027',
   telegram: {
     apiId:    parseInt(process.env.TELEGRAM_API_ID, 10),
     apiHash:  process.env.TELEGRAM_API_HASH,

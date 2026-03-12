@@ -7,13 +7,10 @@ A Node.js automation bot that scrapes today's internship posts from Telegram cha
 - **Telegram MTProto access** via GramJS — reads full message history (not limited like Bot API)
 - **Private group support** — works with any group/channel you've joined, including private ones
 - **Today's messages only** — automatically fetches all messages from today (IST midnight onwards)
-- **Dual-Mode Support** — choose between **LLM mode** (AI extraction) or **Raw mode** (direct logging)
+- **Strict Batch Filtering** — uses AI to strictly filter messages for a target batch (e.g., 2027)
+- **Filtered Raw Storage** — matching original messages are saved directly to `intern.md`
 - **Triple AI support** — OpenAI, Google Gemini, or **OpenRouter** (e.g., `openrouter/hunter-alpha`)
 - **Automatic Multi-Retry** — exponentially backed-off retries for 429 rate limits
-- **Smart link detection** — Google Form links are auto-prioritized as application URLs
-- **Multi-internship parsing** — single messages with multiple listings are split into individual entries
-- **Duplicate prevention** — company + apply link dedup before appending
-- **Scheduled scanning** — optional recurring scans at configurable intervals
 - **Group discovery utility** — `list-groups.js` helper to find numeric IDs of all your joined groups
 
 ## 📁 Project Structure
@@ -73,8 +70,8 @@ cp .env.example .env
 | `TELEGRAM_PHONE` | ✅ | Your phone number (with country code) |
 | `TELEGRAM_SESSION` | ❌ | Session string (saves login — see [Session Setup](#-session-setup) below) |
 | `TELEGRAM_CHANNEL` | ✅ | Channel/group username (without `@`) or **numeric ID** for private groups |
-| `PROCESS_MODE`     | ❌ | `llm` (use AI extraction) or `raw` (just save text to `raw_messages.md`) |
-| `AI_PROVIDER`      | ⚡ | `openai`, `gemini`, or `openrouter` (required if `PROCESS_MODE=llm`) |
+| `TARGET_BATCH`     | ❌ | Bot only saves messages for this batch (e.g., `2027`) |
+| `AI_PROVIDER`      | ✅ | `openai`, `gemini`, or `openrouter` |
 | `OPENAI_API_KEY`   | ⚡ | Required if `AI_PROVIDER=openai` |
 | `GEMINI_API_KEY`   | ⚡ | Required if `AI_PROVIDER=gemini` |
 | `OPENROUTER_API_KEY`| ⚡ | Required if `AI_PROVIDER=openrouter` |
@@ -121,28 +118,16 @@ Copy the ID and set it in your `.env`:
 TELEGRAM_CHANNEL=-1001234567890
 ```
 
-### Running
+## 📋 Output Format (`intern.md`)
 
-```bash
-npm start
-```
+The bot appends matching messages to `intern.md`. Each entry includes a note explaining the AI's reason for the match:
 
-The bot automatically fetches **all messages from today** (IST midnight onwards) and processes them.
-
-The bot outputs data to different files depending on the `PROCESS_MODE`:
-
-### LLM Mode (`internships.md`)
-Maintains a structured database of extracted internships:
-```markdown
-## Company: Acme Corp
-...
-```
-
-### Raw Mode (`raw_messages.md`)
-Saves every Telegram message as-is:
 ```markdown
 ### Message #1234 (2024-03-12T12:00:00Z)
-Check out this new hiring at Acme...
+> **AI Filter Note:** Mentions software engineering internship for the 2027 batch.
+
+Acme Corp is hiring 2027 graduates for...
+---
 ```
 
 ## 🧪 Testing
@@ -151,18 +136,16 @@ Check out this new hiring at Acme...
 npm test
 ```
 
-Runs unit tests for link extraction and Markdown generation using Node's built-in test runner.
+Runs unit tests for link extraction using Node's built-in test runner.
 
 ## 🔄 Pipeline
 
 ```
-Telegram Channel/Group → Fetch Today's Messages → Extract Links/Emails
-                                                         ↓
-                                             AI (OpenAI / Gemini)
-                                                         ↓
-                                             Structured JSON Output
-                                                         ↓
-                                        Dedup Check → Append to internships.md
+Telegram Channel/Group → Fetch Today's Messages
+                                ↓
+                      AI Batch Filter (2027?)
+                                ↓
+             Match Found? → Yes → Append RAW Text to intern.md
 ```
 
 ## 🛠️ Tech Stack
