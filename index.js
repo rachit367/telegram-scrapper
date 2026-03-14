@@ -1,14 +1,12 @@
 const config = require('./src/config');
 const logger = require('./src/logger');
 const { authenticate, fetchMessages, ensureConnected } = require('./src/telegramClient');
-const { extractGoogleFormLinks, extractAllUrls, extractEmails } = require('./src/linkExtractor');
-const { checkBatchMatch } = require('./src/aiProcessor');
 const { appendFilteredRawMessage, isMessageDuplicate } = require('./src/markdownGenerator');
 
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function processMessages(client) {
-  const messages = await fetchMessages(client, config.telegram.channel);
+  const messages = await fetchMessages(client, config.telegram.channel, config.targetDate);
 
   if (messages.length === 0) {
     logger.warn('No text messages found in the channel.');
@@ -16,10 +14,9 @@ async function processMessages(client) {
   }
 
   let added = 0;
-  let matches = 0;
   let skipped = 0;
 
-  logger.info(`🔍  Filtering for Target Batch: ${config.targetBatch}`);
+  logger.info(`🔍  Processing all messages for: ${config.targetDate || 'Today'}`);
 
   for (const msg of messages) {
     // 1. Skip if already in the Markdown file
@@ -28,20 +25,11 @@ async function processMessages(client) {
       continue;
     }
 
-    logger.info(`\n── Checking message #${msg.id} (${msg.date.toISOString()}) ──`);
+    logger.info(`\n── Saving message #${msg.id} (${msg.date.toISOString()}) ──`);
 
-    // Use AI to check if it's a match for the target batch
     try {
-      const { isMatch, reason } = await checkBatchMatch(config, msg.text);
-
-      if (isMatch) {
-        matches++;
-        logger.success(`  ✅ MATCH: ${reason}`);
-        const wasAdded = appendFilteredRawMessage(msg, reason);
-        if (wasAdded) added++;
-      } else {
-        logger.info(`  ❌ SKIP: ${reason}`);
-      }
+      const wasAdded = appendFilteredRawMessage(msg);
+      if (wasAdded) added++;
     } catch (err) {
       logger.error(`  ❌ ERROR processing message #${msg.id}: ${err.message}`);
     }
@@ -50,13 +38,13 @@ async function processMessages(client) {
   if (skipped > 0) {
     logger.info(`\n⏩  Skipped ${skipped} messages already in intern.md`);
   }
-  logger.success(`\nDone! Scanned ${messages.length} | Matches found: ${matches} | New entries saved: ${added}`);
+  logger.success(`\nDone! Scanned ${messages.length} | New entries saved: ${added}`);
 }
 
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function main() {
-  logger.info('🤖  Intern Bot starting...\n');
+  logger.info('🤖  Intern Bot starting (No LLM MODE)...\n');
 
   // Authenticate
   const { client, sessionString } = await authenticate(config.telegram);

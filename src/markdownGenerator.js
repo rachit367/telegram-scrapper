@@ -32,11 +32,10 @@ function isMessageDuplicate(messageId) {
 }
 
 /**
- * Append a raw message to intern.md if it matches the batch.
+ * Append a raw message to intern.md.
  * @param {object} message
- * @param {string} reason - AI provided explanation
  */
-function appendFilteredRawMessage(message, reason) {
+function appendFilteredRawMessage(message) {
   ensureFile();
 
   if (isMessageDuplicate(message.id)) {
@@ -48,12 +47,11 @@ function appendFilteredRawMessage(message, reason) {
   
   let block = '';
   block += `### Message #${message.id} (${timestamp})\n`;
-  block += `> **AI Filter Note:** ${reason}\n\n`;
   block += `${message.text}\n\n`;
   block += '---\n\n';
 
   fs.appendFileSync(MD_FILE, block, 'utf-8');
-  logger.success(`Saved matching message #${message.id} to intern.md`);
+  logger.success(`Saved message #${message.id} to intern.md`);
   return true;
 }
 

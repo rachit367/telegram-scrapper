@@ -470,3 +470,879 @@ https://docs.google.com/forms/d/e/1FAIpQLSfJRfoXzKbJCXZ7lnkjS3PGN8LX7N-6XsGN2WYW
 
 ---
 
+### Message #1472 (2026-03-14T17:43:57.000Z)
+4) Company - Zerowings Aerospace
+Role - SDE Intern (+PPO)
+Batch - 2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Salary - ₹15,000 – ₹20,000/month
+Location - NIT Trichy (Campus)
+
+📄 Job Description:
+https://drive.google.com/drive/folders/1uE7ePnYvGixSh1xXkBdzRSaoWuzsS4MS
+
+📩 How to Apply:
+Apply here:
+https://docs.google.com/forms/d/e/1FAIpQLSe2sYkRro-aKq9Wj_23aHNug2iFO70krEwa9t_uwYiscguXwA/viewform
+
+5) Company - Zerowings Aerospace
+Role - ML & CV Intern (+PPO)
+Batch - 2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Salary - ₹15,000 – ₹20,000/month
+Location - NIT Trichy (Campus)
+
+📄 Job Description:
+https://drive.google.com/drive/folders/1uE7ePnYvGixSh1xXkBdzRSaoWuzsS4MS
+
+📩 How to Apply:
+Apply here:
+https://docs.google.com/forms/d/e/1FAIpQLSe2sYkRro-aKq9Wj_23aHNug2iFO70krEwa9t_uwYiscguXwA/viewform
+
+6) Company - Nitroxen Tech
+Role - Junior DevOps Engineer (Fresher)
+Batch - 2024/2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Salary - ₹25,000 – ₹40,000/month
+Location - Pune (On-site)
+
+Requirements:
+• Basic knowledge of DevOps tools such as Git, Docker, and Jenkins
+• Comfortable working with Linux environments and basic shell commands
+• Understanding of IoT architecture and device connectivity protocols
+• Basic networking knowledge including TCP/IP, DNS, and firewall configurations
+Original source: SDE Jobs & Internships (Premium)
+• Interest in cloud computing, DevOps automation, networking infrastructure, and IoT systems
+• Strong willingness to learn and work in real-world DevOps environments
+
+📩 How to Apply:
+Send your resume to:
+info@nitroxen.in
+
+7) Company - Stealth AI Startup
+Role - Product Intern (+PPO)
+Batch - 2025/2026/2027
+Original source: SDE Jobs & Internships (Premium)
+Salary - ₹25,000/month
+Location - Gurugram
+
+Key Responsibilities:
+• Work closely with the product team to support ongoing product and AI initiatives
+• Assist in Gen AI learning and experimentation with AI-driven tools
+• Help manage and improve content pipelines and operational workflows
+Original source: SDE Jobs & Internships (Premium)
+• Participate in AI-led experiments and product experimentation processes
+• Coordinate with internal teams to ensure smooth execution of product tasks
+• Support product operations and documentation
+
+Requirements:
+• Strong interest or basic understanding of AI tools and automation
+• Quick learner with a proactive and problem-solving mindset
+Original source: SDE Jobs & Internships (Premium)
+• Good coordination, execution, and people management skills
+• Ability to work in a fast-paced startup environment
+
+Work Details:
+• Paid Internship
+Original source: SDE Jobs & Internships (Premium)
+• Work From Office (5 days a week)
+• Location: Pristyn HQ, Gurugram
+• Duration: 3 – 6 months
+
+📩 How to Apply:
+Apply here:
+https://docs.google.com/forms/d/e/1FAIpQLSfIctHLKGs-uct7-85r3-80akKEgxhpbx9qGulDXWxePcHmVg/viewform
+
+---
+
+### Message #1471 (2026-03-14T17:43:57.000Z)
+🚨 Referral Alert 🚨
+Batch - 2023/2024/2025/2026/2027/2028
+
+1) Company - Gobble Cube
+Role - Software Engineering Intern (+PPO)
+Batch - 2025/2026/2027
+Original source: SDE Jobs & Internships (Premium)
+Salary - ₹30,000 – ₹35,000/month
+Location - Delhi NCR
+
+Key Responsibilities:
+• Assist in developing scalable backend systems using Python (FastAPI/Node.js) for real-time decision-making applications
+• Work with event-based and streaming technologies like Kafka to ingest, process, and migrate large-scale data
+• Integrate AI and Large Language Models (LLMs) to improve backend workflows, data accuracy, and user experience
+Original source: SDE Jobs & Internships (Premium)
+• Help build data pipelines, dashboards, and internal automation tools to support engineering teams
+• Contribute to frontend development using ReactJS and TypeScript when required
+• Write clean, maintainable code and assist in debugging and maintaining existing systems
+
+Requirements:
+• Currently pursuing or recently graduated with a degree in Computer Science or related fields
+• Strong proficiency in Python
+• Knowledge of SQL and NoSQL databases
+Original source: SDE Jobs & Internships (Premium)
+• Problem-solving mindset with a “hackathon mentality” — quick iterations and building fast
+• Exposure to cloud platforms such as AWS or GCP is a plus
+• Familiarity with microservices architecture or data visualization tools is an advantage
+• Prior projects involving APIs, data-heavy systems, or AI/ML are highly preferred
+
+📩 How to Apply:
+Apply here:
+https://docs.google.com/forms/d/e/1FAIpQLSfZluprAVRjPwQN7PsfgD5ztK8_IH7YFomlllh7hlz2PvW0RQ/viewform
+
+2) Company - Reliance
+Role - Java Full Stack Engineer Intern (+PPO)
+Batch - 2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Salary - ₹25,000 – ₹30,000/month
+Location - Chennai
+
+Requirements:
+• Strong understanding of Core Java concepts
+• Knowledge of Spring / Spring Boot framework
+• Basic understanding of RESTful APIs
+Original source: SDE Jobs & Internships (Premium)
+• Familiarity with HTML, CSS, JavaScript, and any frontend framework (Angular/React preferred)
+• Understanding of MySQL / PostgreSQL or any relational database
+• Basic knowledge of version control tools like Git
+• Good analytical and problem-solving skills
+
+Eligibility:
+• Final-year students or recent graduates pursuing BE/BTech/BSc/BCA/MCA in Computer Science, IT, or related fields
+• Academic or personal project experience in Java or Full Stack development is an added advantage
+
+📩 How to Apply:
+Apply here:
+https://www.expertia.ai/ril-reliance-retail/job/hiring-engineer-intern-6936720e10fbf9190d54f69d
+
+3) Company - Zamp
+Role - AI Analyst
+Batch - 2023/2024/2025/2026
+Original source: SDE Jobs & Internships (Premium)
+CTC - ₹10 – ₹15 LPA
+Location - Bengaluru
+
+Requirements:
+• 0–2 years of professional experience (including internships) in analyst or related roles
+• Strong academic background; candidates from top-tier institutes preferred
+• Undergraduate degree in Computer Science or related fields preferred
+Original source: SDE Jobs & Internships (Premium)
+• Basic programming knowledge in languages such as Python or JavaScript
+• Strong problem-solving skills and structured thinking for workflow or process modeling
+• Proactive mindset with strong ownership and ability to work in fast-paced environments
+• Excellent communication skills and ability to translate business needs into technical solutions
+
+📩 How to Apply:
+Apply here:
+https://careers.kula.ai/zamp-ai/19526/apply/
+
+---
+
+### Message #1469 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Byteridge
+Role - Software Development Engineer
+Original source: SDE Jobs & Internships (Premium)
+Batch - 2026
+Salary - ₹50,000 – ₹70,000/month
+Location - Bangalore
+
+Key Responsibilities:
+• Develop scalable web, mobile, or backend applications using modern technology stacks
+• Write clean, maintainable, and efficient code following best development practices
+Original source: SDE Jobs & Internships (Premium)
+• Collaborate with cross-functional teams to design and deliver high-quality software solutions
+• Participate in debugging, testing, and improving application performance
+• Work on real-world projects across frontend, backend, mobile, or AI/ML domains
+
+Requirements:
+• B.Tech (2026 Batch) in Computer Science, IT, ECE, EEE, or related engineering streams with CS subjects
+• Hands-on exposure to at least one stack: Web (React/Angular/Vue), Mobile (Android/iOS/Flutter/React Native), .NET, Node.js, Java, or AI/ML
+• Strong coding fundamentals and problem-solving skills
+Original source: SDE Jobs & Internships (Premium)
+• Internship experience (2–3 months) or multiple academic/personal projects preferred
+• Good understanding of software development concepts and version control tools like Git
+• Strong communication skills and ability to work in a team
+
+📩 How to Apply:
+Apply here:
+https://byteridge.turbohire.co/job/publicjobs/BkGNuGYbjuUcHKX4RrS0%2F9WUW7wkJ_PxJ6lwTZ7fXCa7g4LxFU4C12cOwsEU5GyVFR8p4pGI2dEy5d1qtjujgrTd6nNkEo4KIrPIPEcf18A2DteKUKez5BpQEl7w209hk_BJU0P3cGwTytHpC7Lz%2FaehvFG7c0PaRKaV9SpQktt9nustnUN2dNjUzu5JFkEYnhKRTvyCorzThnO4jMrR03l22c3AkeP7_4RgUCtaTSI=
+
+---
+
+### Message #1468 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Sasken
+Role - Software Engineer
+Batch - 2025
+Original source: SDE Jobs & Internships (Premium)
+Salary - ₹50,000 – ₹80,000/month
+Location - Bengaluru
+
+Key Responsibilities:
+• Develop and maintain software components using C/C++
+• Write efficient and optimized code for system-level applications
+• Work on debugging, testing, and improving software performance
+Original source: SDE Jobs & Internships (Premium)
+• Implement data structures and algorithms to solve engineering problems
+• Collaborate with cross-functional teams to deliver high-quality software solutions
+
+Requirements:
+• Bachelor’s or Master’s degree in Computer Science Engineering, Electronics & Communication Engineering, or related branches
+• Minimum 75% marks or 7.5 CGPA in highest qualification
+• Strong proficiency in C or C++ programming language
+Original source: SDE Jobs & Internships (Premium)
+• Good understanding of Data Structures and Algorithms
+• Strong analytical and problem-solving skills
+
+📩 How to Apply:
+Apply here:
+https://forms.cloud.microsoft/pages/responsepage.aspx?id=vxDiq1cfnk6NTrMghdOpkRvXmlW7JBlLkmFH3OBxlOxUMjc1WVFCVVdTT0hCNVI0UU4zR1M4VjVPSy4u&route=shorturl
+
+---
+
+### Message #1467 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Synechron
+Role - 
+Softare Engineering
+Java backend
+Angular
+Front-End
+Original source: SDE Jobs & Internships (Premium)
+Fullstack
+.NET
+Python
+React
+Salesforce
+QA
+Data Analytics
+
+Experience - 3+ Years
+CTC - Competitive
+Location - Bangalore/ChennaiGurugram/Pune
+
+Carrier Page:
+https://www.synechron.com/careers/jobs/software/all/all
+
+Apply Link -
+https://docs.google.com/forms/d/e/1FAIpQLSc70Wu_q0gnyLwFRmHcEN64P-8X9-auYelOf95fUOA8pbUHQg/viewform
+
+---
+
+### Message #1466 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company- Dassault Systemes Solutions Lab 
+Roles -
+SOLIDWORKS QA Engineer
+Full Stack Developer with AI
+User Experience Design Specialist
+Software Engineer (C++ & AI)
+Software Asset Manager
+AI - Quality Engineer
+C++ Geometry
+User Assistance Developer
+Software Engineer - Java
+.Net Full Stack Developer
+Data Center & LAN Specialist
+Salesforce CPQ Developer
+Original source: SDE Jobs & Internships (Premium)
+Infrastructure as Code Engineer – Cloud Provider Tooling
+PeopleSoft Developer
+
+CTC - 20 - 50 LPA
+Batch - 2018 - 2025
+Location - Pune, Bangalore 
+
+Send your resume to - barahaterohit100@gmail.com / ganesh.thik@3ds.com / Iragouda.PATIL@3ds.com / rohit.adate@3ds.com 
+
+B.E/ BTech / M.Tech / ME in Computer Sciences or a related discipline from premier institutions with good academic track records
+
+Please mention the Job title, Job ID, Experience, and preferred location
+
+---
+
+### Message #1463 (2026-03-14T07:57:50.000Z)
+Company - CompuGroup Medical (CGM)
+Role - Generative AI Developer (Fresher)
+Original source: SDE Jobs & Internships (Premium)
+Batch - 2022/2023/2024/2025
+Stipend - Competitive
+Location - Noida
+
+Apply Link -
+https://cgm.wd3.myworkdayjobs.com/de-DE/cgm/job/Noida/Generative-AI-Developer--Fresher-_JR108708
+
+---
+
+### Message #1462 (2026-03-14T07:57:50.000Z)
+Company - Yellow.ai
+Role - Security Engineer
+Batch - 2022/2023/2024
+Stipend - Competitive
+Original source: SDE Jobs & Internships (Premium)
+Location - Bangalore
+
+Apply Link -
+https://yellow.zohorecruit.in/jobs/Careers/157454000001876252/Security-Engineer
+
+---
+
+### Message #1461 (2026-03-14T07:57:50.000Z)
+Company - Trimont
+Role - Transaction analyst
+Batch - 2022/2023/2024/2025
+Stipend - Competitive
+Original source: SDE Jobs & Internships (Premium)
+Location - Bangalore
+
+Apply Link -
+https://recruiting.ultipro.com/TRI1039TRES/JobBoard/551314d5-926b-4475-808f-39d0e0248aed/OpportunityDetail?opportunityId=35c4e4a8-cbea-4986-b25b-2bffe0a499cc&source=6ed4cd7e-35fa-463f-b38b-c1994e86885b
+
+---
+
+### Message #1460 (2026-03-14T07:57:50.000Z)
+Company - BNP Paribas
+Role - Operations Analyst Intern
+Batch - 2022/2023/2024/2025
+Stipend - Competitive
+Original source: SDE Jobs & Internships (Premium)
+Location - Bangalore
+
+Apply Link -
+https://group.bnpparibas/en/careers/job-offer/internship-operations-analyst
+
+---
+
+### Message #1459 (2026-03-14T07:57:50.000Z)
+Company - Dassault Systèmes
+Role - User Request Engineer Apprentice
+Batch - 2022/2023/2024
+Original source: SDE Jobs & Internships (Premium)
+Stipend - Competitive
+Location - Multiple Locations
+
+Apply Link -
+https://www.3ds.com/careers/jobs/user-request-engineer-apprentice-546308?src=SNS-102
+
+---
+
+### Message #1457 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Zynga
+Role - QA Analyst
+Batch - 2022/2023/2024/2025
+CTC - 8-15 LPA
+Original source: SDE Jobs & Internships (Premium)
+Location - Bengaluru, India
+
+What You'll Do:
+• Drives improvements to QA development tools such as the debug menu or crash capturing.
+• Takes on delegation from QA Leadership e.g. onboarding of new QA Analysts, chairs weekly meet, test case management.
+• Maintain and update test strategies, regression plans, cross-feature plans.
+• Can manage self and several other QA testers.
+• Can analyze performance data to find and report issues and critically analyze risks.
+• Understanding of client and server testing, including server validation, mobile DLC, and experiments/ events.
+Original source: SDE Jobs & Internships (Premium)
+• Proficiency in Python or any other scripting language for automation and process optimization.
+• Experience with Jenkins for CI/CD pipeline automation.
+• Knowledge of SQL for querying databases, data validation.
+
+What You Bring:
+• Experience in the gaming industry.
+Original source: SDE Jobs & Internships (Premium)
+• Ability to write pseudo code.
+• ASTQB qualified.
+• Understands how software architecture influences the amount of testing needed.
+• Has experience in using device farms e.g. AWS or testdroid.
+
+How to Apply:
+https://job-boards.greenhouse.io/zyngacareers/jobs/5805675004
+
+---
+
+### Message #1454 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Aon
+Role - Software Engineer
+Batch - 2019/2020/2021/2022/2023
+CTC - 30 - 50 LPA
+Original source: SDE Jobs & Internships (Premium)
+Location - Bangalore
+
+Preferred skills:
+• Strong experience with React.
+• Solid knowledge of .NET.
+Original source: SDE Jobs & Internships (Premium)
+
+Good to have (not mandatory):
+• Strong problem-solving skills.
+• Curiosity and willingness to learn new technologies and stacks.
+• Ability to adapt and grow in a fast-paced environment.
+
+How to Apply:
+https://docs.google.com/forms/d/e/1FAIpQLSfBc3bep5b-6-FwVG1eRjgPuGK6jMYcX3sF1ZBcVuC9smO0xw/viewform
+
+---
+
+### Message #1452 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Product Based Company
+Role - React Developer
+Original source: SDE Jobs & Internships (Premium)
+Batch - 2019/2020/2021/2022/2023
+CTC - 20 - 45 LPA
+Location - Bangalore/Delhi NCR
+
+What we're looking for:
+• React.js + TypeScript — mandatory (projects mein, not just skills section).
+Original source: SDE Jobs & Internships (Premium)
+• 2+ years of real frontend experience.
+• Custom hooks, performance optimization, API depth.
+• Bonus: React Query, Zod, Redux, Next.js.
+
+How to Apply:
+https://docs.google.com/forms/d/e/1FAIpQLSd0sfZEq6vhtWetY0iWpQH_gKB5kavpE-wYW2_rSO-SJ1pqUQ/viewform
+
+---
+
+### Message #1450 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Bachatt
+Role - Product Designer
+Batch - 2022/2023/2024/2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Salary - 30,000 - 70,000/month
+Location - Gurgaon
+
+Job Details:
+• You will be responsible for understanding the unique needs, challenges, and mental models of the self-employed segment and translating them into intuitive, trustworthy, and delightful user experiences across our mobile application.
+Original source: SDE Jobs & Internships (Premium)
+• Your primary challenge will be making complex financial concepts, compliance requirements (like CKYC and SIP processing), and investment tracking simple and accessible.
+
+We’re looking for someone who has:
+• Strong UX + product thinking.
+• Experience with Figma and modern design tools.
+• A portfolio showcasing real product work.
+
+How to Apply:
+https://docs.google.com/forms/d/e/1FAIpQLScFezi8phvllVdPLSMNX6MQ2PVIjj9orVQEPzl_xH2WrraP8w/viewform
+
+---
+
+### Message #1449 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Wisemonk
+Role - Frontend Developer
+Batch - 2020/2021/2022/2023
+CTC - 30 - 50 LPA
+Original source: SDE Jobs & Internships (Premium)
+Location - Bangalore
+
+Responsibilities:
+• Develop and maintain scalable, responsive web applications using ReactJS / NextJS / VueJS.
+• Write clean, maintainable, and reusable code using semantic HTML, CSS, and object-oriented JavaScript.
+Original source: SDE Jobs & Internships (Premium)
+• Implement state management using Context API and Redux.
+• Integrate RESTful APIs and ensure seamless data flow across applications.
+• Optimize applications for maximum speed and scalability.
+
+Technical Skills:
+• 3-5 years of hands-on experience with semantic HTML, CSS, and object-oriented JavaScript.
+Original source: SDE Jobs & Internships (Premium)
+• Strong expertise in ReactJS (experience with NextJS or VueJS is a plus).
+• Good knowledge of Context API, Redux, RESTful APIs, and responsive design principles.
+
+How to Apply:
+https://docs.google.com/forms/d/e/1FAIpQLSc_sySAiSH-4NIbYFHuHjF2Y_oIc2icj8Yd5JFpiZRZ7jePHw/viewform
+
+---
+
+### Message #1446 (2026-03-14T07:57:50.000Z)
+Company - Pehalhealthcare Technologies Private Limited
+Role - Python Development Intern
+Batch - 2024/2025/2026/2027
+Stipend - Competitive
+Original source: SDE Jobs & Internships (Premium)
+Location - Multiple Locations
+
+Apply Link -
+https://internshala.com/internship/detail/python-development-internship-in-multiple-locations-at-pehalhealthcare-technologies-private-limited1773311050/
+
+---
+
+### Message #1445 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - EasySolution
+Role - ASP.NET Developer
+Batch - 2022/2023/2024/2025
+Salary - 30,000 - 60,000/month
+Original source: SDE Jobs & Internships (Premium)
+Location - Delhi NCR
+
+Required Skills:
+• ASP.NET Web Forms, C#, HTML, CSS, JavaScript, jQuery, SQL Server, SOAP / REST APIs, Visual Studio.
+• Basic knowledge of Entity Framework.
+
+How to Apply:
+📩 Please send your updated resume to: admin1@easysolution.asia
+
+---
+
+### Message #1444 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Flipkart
+Role - SDE 2 (Backend)
+Batch - 2020/2021/2022/2023
+CTC - 30 - 50 LPA
+Location - Bangalore
+
+Mandatory Skills:
+Original source: SDE Jobs & Internships (Premium)
+• Problem-solving skills, Algorithms, Java, System Design, Low-Level Design, and high-level design.
+
+How to Apply:
+https://docs.google.com/forms/d/e/1FAIpQLScF3m95ALglKM8vC5uRa75Ffh6BraWFQStnRkOUupLptE_4Qg/viewform
+
+---
+
+### Message #1443 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - WitArist IT Services Pvt. Ltd.
+Role - MERN Stack Developer
+Batch - 2020/2021/2022/2023/2024
+Original source: SDE Jobs & Internships (Premium)
+CTC - 8-20 LPA
+Location - Remote /Gurugram
+
+Skills Required:
+• React.js, Next.js, Node.js, Express.js, MongoDB / MySQL, REST API Development, Git, CI/CD understanding.
+
+How to Apply:
+https://docs.google.com/forms/d/e/1FAIpQLScLV5BU5DYlVBauxyJgBpEqsmOL-jFAou_IU_Losjdg3h9R8Q/viewform
+
+---
+
+### Message #1441 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Bugsmirror
+Role - Backend Engineer
+Batch - 2023/2024/2025
+Original source: SDE Jobs & Internships (Premium)
+Salary - 25,000 - 40,000/month
+Location - Indore
+
+Key Responsibilities:
+• Core Backend: Design, build, and maintain backend services using Golang. Develop scalable REST APIs and microservices. Work with databases and optimize query performance. Implement background workers and job processing systems.
+• Cloud & Infrastructure: Deploy and manage services on cloud platforms. Monitor logs, performance, and reliability. Troubleshoot production issues. Work with messaging and event-driven systems (queues, Pub/Sub, etc.).
+• DevOps Collaboration: Support CI/CD pipelines and automation. Improve system observability and alerting. Ensure high availability and scalability.
+• Engineering Excellence: Write clean, maintainable, and testable code. Participate in code reviews and architecture discussions. Improve system performance and cost efficiency.
+
+Skills Required (Must Have):
+• 1–2 years of backend development experience.
+• Strong programming skills in Golang or any modern backend language.
+Original source: SDE Jobs & Internships (Premium)
+• Experience building REST APIs.
+• Good understanding of SQL or NoSQL databases.
+• Understanding of cloud platforms and distributed systems.
+• Strong debugging and problem-solving skills.
+
+Good to Have:
+• Experience with microservices and event-driven architecture.
+• Knowledge of Docker/containerization.
+• Experience with cloud services (Pub/Sub, serverless or container platforms).
+Original source: SDE Jobs & Internships (Premium)
+• Familiarity with monitoring and logging tools.
+• Understanding of system design and scalability.
+
+Selection Process:
+• Round 1: Technical Paper (Coding Assessment – 3 hours).
+• Round 2: Personal Interview (Technical + HR).
+
+How to Apply:
+📩 Send your resume to career@bugsmirror.com
+
+---
+
+### Message #1440 (2026-03-14T07:57:50.000Z)
+🚨 Referral Alert 🚨
+
+Company - Muks Robotics
+Role - Senior Robotics Engineer
+Batch - 2022 and before
+Original source: SDE Jobs & Internships (Premium)
+CTC - 20 - 35 LPA
+Location - Pune
+
+Job Details:
+• Building robots is not easy. A month ago, we delivered 2 robots to a client. Now they came back with a repeat order for 20 robots. We have only one month to deliver.
+Original source: SDE Jobs & Internships (Premium)
+• Manufacturing is messy right now - vendors, machining parts, raw materials, assembly everything moving at the same time with limited resources.
+• But this is how real robotics companies are built. At Muks Robotics, we are looking for people who want to build real robots.
+
+How to Apply:
+📩 Mail your resume and why you are fit for this role at: hr@muksrobotics.com
+
+---
+
+### Message #1439 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - Stealth Startup
+Role - Dot net Developer Intern
+Batch - 2024/2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Stipend - 20,000/month
+Location - Mumbai
+
+Job Description:
+• We are looking for dot net Software Developers to design, build, & maintain high-quality software solutions. You will collaborate closely with developers, business analysts, & domain experts to deliver scalable & efficient products.
+
+Key Responsibilities:
+1. Develop, test, deploy, & maintain software solutions.
+2. Write clean, efficient, & maintainable code following best practices.
+3. Integrate third-party tools & components.
+4. Troubleshoot, debug, upgrade, & enhance existing applications.
+5. Gather & analyze requirements & feedback.
+Original source: SDE Jobs & Internships (Premium)
+6. Prepare technical documentation & support project execution.
+
+Required Skills & Qualifications:
+1. Bachelor’s degree in Computer Science, Engineering, or related field.
+2. Knowledge on Microsoft technologies: ASP.NET (3.5+), MVC, C#, Web Services.
+3. Knowledge on Oracle 11g, SQL Server (2012/2017), XML, AJAX.
+
+How to Apply:
+📞 Send your CV via WhatsApp to +91 9113811869
+
+---
+
+### Message #1435 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - Design247pro
+Role - Founder's Office Intern (Product Marketing, Growth & Partnerships)
+Batch - 2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Stipend - 20,000/month
+Location - Noida
+
+Job Details:
+• We’re building Design247, a DesignTech platform transforming how architects, interior designers and building material brands sell and visualise products.
+• Our platform enables real building materials products to be visualised inside real interiors before purchase.
+Original source: SDE Jobs & Internships (Premium)
+• We’re looking for immediate joiners to work closely with the founder on product marketing, growth and ecosystem partnerships.
+
+Who should apply:
+• Graduates from Interior Design / Architecture / Product Design.
+Original source: SDE Jobs & Internships (Premium)
+• Curious about design + technology + startups.
+• Interested in how AI & 3D visualisation are transforming the design industry.
+
+How to Apply:
+📩 Send your CV / portfolio to: hr.quleep@gmail.com
+
+---
+
+### Message #1434 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - Titan
+Role - Product Design Intern
+Batch - 2024/2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Stipend - 25,000 - 30,000/month
+Location - Mumbai
+
+Job Details:
+• This internship and job is an opportunity to engage with the fundamentals of mechanical watchmaking—exploring architecture, kinematics, and new expressions of mechanical time telling.
+
+Who should apply:
+• Final-year Industrial / Product Design students.
+• Strong curiosity for mechanisms, precision engineering, and horology.
+Original source: SDE Jobs & Internships (Premium)
+• Background in Mech Engineering could be an advantage.
+• Ability to sketch, visualize, and think through mechanical systems.
+
+How to Apply:
+📩 Send your portfolio + CV to: hemantpal@titan.co.in or 9663111882
+
+---
+
+### Message #1433 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - Codenia Technologies
+Role - Data Research Analyst (Male candidates only)
+Batch - 2023/2024/2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Salary - 30,000 - 60,000/month
+Location - Noida
+
+Key Responsibilities:
+• Build and maintain databases for B2B digital services such as Product Engineering, Cloud Engineering, and Quality Engineering through secondary research.
+• Support the inside sales team by identifying new accounts and C-level decision-makers for lead generation in the US market.
+Original source: SDE Jobs & Internships (Premium)
+• Perform data mining and maintain high-quality lead data that supports sales conversions.
+• Continuously research and identify prospective companies.
+
+Requirements:
+• Strong interest in data research, data mining, and market research.
+• Basic understanding of online research and keyword search techniques.
+Original source: SDE Jobs & Internships (Premium)
+• Familiarity with LinkedIn and other online platforms for company and contact research.
+• Basic knowledge of MS Excel.
+• Ability to differentiate between product-based and service-based companies (training will be provided).
+
+How to Apply:
+https://hireflock.ai/codenia-technologies-llp/job-profile/20a087a9-4a3f-483f-91cb-551581fb002f/apply
+
+---
+
+### Message #1432 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - Muks Robotics
+Role - Technical Product Manager (Robotics)
+Batch - 2020/2021/2022/2023/2024/2025
+CTC - 10-25 LPA
+Original source: SDE Jobs & Internships (Premium)
+Location - Pune
+
+Job Details:
+• Building robots is not easy. A month ago, we delivered 2 robots to a client. Now they came back with a repeat order for 20 robots. We have only one month to deliver.
+• Manufacturing is messy right now - vendors, machining parts, raw materials, assembly everything moving at the same time with limited resources.
+Original source: SDE Jobs & Internships (Premium)
+• But this is how real robotics companies are built. At Muks Robotics, we are looking for people who want to build real robots.
+
+How to Apply:
+📩 Mail your resume and why you are fit for this role at: hr@muksrobotics.com
+
+---
+
+### Message #1431 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - Muks Robotics
+Role - AI/ML Engineer
+Batch - 2020/2021/2022/2023/2024/2025
+Original source: SDE Jobs & Internships (Premium)
+CTC - 10-25 LPA
+Location - Pune
+
+Job Details:
+• Building robots is not easy. A month ago, we delivered 2 robots to a client. Now they came back with a repeat order for 20 robots. We have only one month to deliver.
+• Manufacturing is messy right now - vendors, machining parts, raw materials, assembly everything moving at the same time with limited resources.
+Original source: SDE Jobs & Internships (Premium)
+• But this is how real robotics companies are built. At Muks Robotics, we are looking for people who want to build real robots.
+
+How to Apply:
+📩 Mail your resume and why you are fit for this role at: hr@muksrobotics.com
+
+---
+
+### Message #1428 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - Wits Innovation Lab
+Role - AI/ML Intern
+Batch - 2024/2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Stipend - ₹15,000/month
+Location - Mohali
+
+Key Responsibilities:
+• Assist in developing and training machine learning models
+• Work on data preprocessing, feature engineering, and model evaluation
+Original source: SDE Jobs & Internships (Premium)
+• Analyze datasets to identify patterns and insights
+• Collaborate with engineering teams to integrate AI/ML solutions into products
+• Conduct research on new AI techniques and algorithms
+
+Requirements:
+• Basic understanding of Machine Learning and Deep Learning concepts
+• Knowledge of Python and ML libraries such as NumPy, Pandas, Scikit-learn, TensorFlow, or PyTorch
+Original source: SDE Jobs & Internships (Premium)
+• Familiarity with data analysis and model evaluation techniques
+• Strong analytical and problem-solving skills
+• Interest in building AI-powered applications
+
+📩 Interested candidates can share their resumes at:
+prabhnoork.ahluwalia@thewitslab.com
+
+---
+
+### Message #1427 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - AuthSec AI
+Role - Backend Intern (Python / Golang)
+Batch - 2024/2025/2026
+Original source: SDE Jobs & Internships (Premium)
+Stipend - ₹20,000/month
+Location - Remote
+
+Key Responsibilities:
+• Develop and maintain backend services using Python or Golang
+Original source: SDE Jobs & Internships (Premium)
+• Design and implement APIs for scalable applications
+• Work with databases and optimize backend performance
+• Collaborate with frontend and AI teams to integrate services
+• Write clean, maintainable, and efficient backend code
+
+Requirements:
+• Strong knowledge of Python or Golang
+Original source: SDE Jobs & Internships (Premium)
+• Understanding of REST APIs and backend architecture
+• Basic knowledge of databases such as MySQL, PostgreSQL, or MongoDB
+• Familiarity with Git and version control systems
+• Good problem-solving skills and understanding of scalable backend systems
+
+📩 How to Apply:
+Send your resume to sathyam@authnull.com
+
+---
+
+### Message #1426 (2026-03-14T07:57:49.000Z)
+🚨 Referral Alert 🚨
+
+Company - AuthSec AI
+Role - AI/ML Intern
+Original source: SDE Jobs & Internships (Premium)
+Batch - 2024/2025/2026
+Stipend - ₹20,000/month
+Location - Remote
+
+Key Responsibilities:
+• Assist in building and training machine learning models
+Original source: SDE Jobs & Internships (Premium)
+• Work on data preprocessing, feature engineering, and model evaluation
+• Conduct research on AI/ML techniques to improve product capabilities
+• Collaborate with engineering teams to integrate ML models into applications
+• Analyze datasets and generate insights to improve model performance
+
+Requirements:
+• Basic understanding of Machine Learning and Deep Learning concepts
+Original source: SDE Jobs & Internships (Premium)
+• Knowledge of Python and ML libraries such as NumPy, Pandas, Scikit-learn, or TensorFlow/PyTorch
+• Understanding of data preprocessing and model evaluation techniques
+• Strong problem-solving and analytical skills
+• Interest in AI research and building real-world ML applications
+
+📩 How to Apply:
+Send your resume to sathyam@authnull.com
+
+---
+

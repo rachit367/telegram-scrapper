@@ -53,30 +53,53 @@ async function ensureConnected(client) {
 }
 
 /**
- * Get the start of today in UTC (midnight IST = 18:30 UTC previous day).
- * Environment-independent calculation using milliseconds.
+ * Get the start of a specific date or today in UTC (midnight IST = 18:30 UTC previous day).
+ * @param {string|null} manualDate - YYYY-MM-DD string or null for today
  */
-function getTodayStartUTC() {
+function getTargetStartUTC(manualDate = null) {
   const msPerDay = 24 * 60 * 60 * 1000;
   const istOffset = 5.5 * 60 * 60 * 1000;
   
-  const now = Date.now();
-  const istNow = now + istOffset;
-  const istMidnight = Math.floor(istNow / msPerDay) * msPerDay;
-  const todayStartUTC = istMidnight - istOffset;
+  let targetTime;
+  if (manualDate) {
+    // Parse manualDate (YYYY-MM-DD) in IST
+    const [year, month, day] = manualDate.split('-').map(Number);
+    // month is 0-indexed in Date constructor
+    const dateIST = new Date(year, month - 1, day, 0, 0, 0, 0);
+    targetTime = dateIST.getTime();
+  } else {
+    const now = Date.now();
+    const istNow = now + istOffset;
+    const istMidnight = Math.floor(istNow / msPerDay) * msPerDay;
+    targetTime = istMidnight - istOffset;
+    return new Date(targetTime);
+  }
+
+  // If manual date was provided, we need to adjust for IST to UTC
+  // The Date(year, month-1, day) in local time (which might be IST or something else)
+  // Let's be safer and use a more direct IST calculation if we know the user is in IST
+  // However, the previous logic used Date.now() + istOffset.
   
-  return new Date(todayStartUTC);
+  // Refined calculation for manual date in IST:
+  const [y, m, d] = manualDate.split('-').map(Number);
+  // Create date in UTC then subtract 5.5 hours to get the UTC timestamp equivalent to IST midnight
+  const utcDate = Date.UTC(y, m - 1, d, 0, 0, 0);
+  const targetStartUTC = utcDate - istOffset;
+  
+  return new Date(targetStartUTC);
 }
 
 /**
- * Fetch today's messages from a channel or group.
- * Iterates in batches until messages older than today are found.
+ * Fetch messages from a channel or group since a target date.
+ * Iterates in batches until messages older than target are found.
  */
-async function fetchMessages(client, channelIdentifier, batchSize = 100) {
+async function fetchMessages(client, channelIdentifier, targetDate = null, batchSize = 100) {
   await ensureConnected(client);
 
-  const todayStart = getTodayStartUTC();
-  logger.info(`Fetching messages since ${todayStart.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} (IST)`);
+  const targetStart = getTargetStartUTC(targetDate);
+  const dateLabel = targetDate ? targetDate : 'today';
+  
+  logger.info(`Fetching messages since ${targetStart.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} (IST) [${dateLabel}]`);
 
   let entity;
   try {
@@ -130,7 +153,7 @@ async function fetchMessages(client, channelIdentifier, batchSize = 100) {
       totalProcessed++;
       const msgDate = new Date(m.date * 1000);
 
-      if (msgDate < todayStart) {
+      if (msgDate < targetStart) {
         reachedOlderMessages = true;
         break;
       }
@@ -148,7 +171,7 @@ async function fetchMessages(client, channelIdentifier, batchSize = 100) {
     offsetId = batch[batch.length - 1].id;
   }
 
-  logger.info(`Scanned ${totalProcessed} messages. Found ${allTextMessages.length} text messages from today.`);
+  logger.info(`Scanned ${totalProcessed} messages. Found ${allTextMessages.length} text messages from ${dateLabel}.`);
   return allTextMessages;
 }
 
