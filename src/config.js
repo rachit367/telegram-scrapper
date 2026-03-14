@@ -16,7 +16,6 @@ for (const key of required) {
 // LLM keys are no longer required
 
 module.exports = {
-  targetBatch: process.env.TARGET_BATCH || '2027',
   targetDate:  process.env.TARGET_DATE || null, // YYYY-MM-DD
   telegram: {
     apiId:    parseInt(process.env.TELEGRAM_API_ID, 10),
