@@ -1,6 +1,6 @@
 # Dependencies
 node_modules/
-
+prompt.txt
 # Environment
 .env
 .env.local

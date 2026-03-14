@@ -16,8 +16,8 @@ A Node.js automation bot that scrapes internship posts from Telegram channels & 
 intern bot/
 ├── index.js                  # Main entry point
 ├── list-groups.js            # Utility: list all joined groups with IDs
-├── internships.md            # Output: Structured internship database (LLM mode)
-├── raw_messages.md           # Output: Raw Telegram messages (Raw mode)
+├── intern.md                 # Output: Raw Telegram messages (Raw mode)
+├── internship.md             # Output: Structured internship database (Extracted)
 ├── package.json
 ├── .env.example              # Environment variable template
 ├── .gitignore
@@ -127,13 +127,10 @@ npm test
 
 Runs unit tests for link extraction using Node's built-in test runner.
 
-## 🔄 Pipeline
+## 🔄 Workflow
 
-```
-Telegram Channel/Group → Fetch Messages (Date: Today or Manual)
-                                 ↓
-                     Append RAW Text to intern.md
-```
+1. **Telegram Fetch**: Run the bot (`npm start`) to fetch messages from groups/channels. Messages are saved as raw text in `intern.md`.
+2. **AI Processing**: Once the bot is done, ask the AI to process `intern.md`. The AI scans the file for specific criteria (e.g., **2027 batch roles**) and extracts them into `internship.md`.
 
 ## 🛠️ Tech Stack
 
