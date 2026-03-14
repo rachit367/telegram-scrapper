@@ -57,4 +57,4 @@ function appendFilteredRawMessage(message, reason) {
   return true;
 }
 
-module.exports = { appendFilteredRawMessage, ensureFile, MD_FILE };
+module.exports = { appendFilteredRawMessage, isMessageDuplicate, ensureFile, MD_FILE };

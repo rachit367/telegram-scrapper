@@ -34,6 +34,25 @@ async function authenticate(config) {
 }
 
 /**
+ * Ensure the client is currently connected.
+ * If not, attempts to reconnect.
+ *
+ * @param {TelegramClient} client
+ */
+async function ensureConnected(client) {
+  if (!client.connected) {
+    logger.info('Connection lost. Reconnecting to Telegram...');
+    try {
+      await client.connect();
+      logger.success('Reconnected successfully.');
+    } catch (err) {
+      logger.error('Reconnection failed:', err.message);
+      throw err;
+    }
+  }
+}
+
+/**
  * Get the start of today in UTC (midnight IST = 18:30 UTC previous day).
  * Environment-independent calculation using milliseconds.
  */
@@ -54,6 +73,8 @@ function getTodayStartUTC() {
  * Iterates in batches until messages older than today are found.
  */
 async function fetchMessages(client, channelIdentifier, batchSize = 100) {
+  await ensureConnected(client);
+
   const todayStart = getTodayStartUTC();
   logger.info(`Fetching messages since ${todayStart.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} (IST)`);
 
@@ -66,8 +87,18 @@ async function fetchMessages(client, channelIdentifier, batchSize = 100) {
       entity = await client.getEntity(trimmed);
     }
   } catch (err) {
-    logger.error(`Failed to find group/channel "${channelIdentifier}": ${err.message}`);
-    return [];
+    await ensureConnected(client); // Try one more time if getEntity fails due to connection
+    try {
+      const trimmed = String(channelIdentifier).trim();
+      if (/^-?\d+$/.test(trimmed)) {
+        entity = await client.getEntity(BigInt(trimmed));
+      } else {
+        entity = await client.getEntity(trimmed);
+      }
+    } catch (innerErr) {
+      logger.error(`Failed to find group/channel "${channelIdentifier}": ${innerErr.message}`);
+      return [];
+    }
   }
 
   const allTextMessages = [];
@@ -76,10 +107,22 @@ async function fetchMessages(client, channelIdentifier, batchSize = 100) {
   let totalProcessed = 0;
 
   while (!reachedOlderMessages) {
-    const batch = await client.getMessages(entity, {
-      limit: batchSize,
-      offsetId,
-    });
+    await ensureConnected(client);
+
+    let batch;
+    try {
+      batch = await client.getMessages(entity, {
+        limit: batchSize,
+        offsetId,
+      });
+    } catch (err) {
+      logger.warn(`Failed to fetch message batch: ${err.message}. Retrying...`);
+      await ensureConnected(client);
+      batch = await client.getMessages(entity, {
+        limit: batchSize,
+        offsetId,
+      });
+    }
 
     if (batch.length === 0) break;
 
@@ -109,4 +152,4 @@ async function fetchMessages(client, channelIdentifier, batchSize = 100) {
   return allTextMessages;
 }
 
-module.exports = { authenticate, fetchMessages };
+module.exports = { authenticate, fetchMessages, ensureConnected };
