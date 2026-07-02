@@ -89,17 +89,18 @@ function getTargetStartUTC(manualDate = null) {
   return new Date(targetStartUTC);
 }
 
-/**
- * Fetch messages from a channel or group since a target date.
- * Iterates in batches until messages older than target are found.
- */
-async function fetchMessages(client, channelIdentifier, targetDate = null, batchSize = 100) {
+async function fetchMessages(client, channelIdentifier, { targetDate = null, minId = null, batchSize = 100 } = {}) {
   await ensureConnected(client);
 
-  const targetStart = getTargetStartUTC(targetDate);
+  const useMinId = Number.isInteger(minId) && minId > 0;
+  const targetStart = useMinId ? null : getTargetStartUTC(targetDate);
   const dateLabel = targetDate ? targetDate : 'today';
-  
-  logger.info(`Fetching messages since ${targetStart.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} (IST) [${dateLabel}]`);
+
+  if (useMinId) {
+    logger.info(`Fetching messages newer than checkpoint message #${minId}`);
+  } else {
+    logger.info(`Fetching messages since ${targetStart.toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' })} (IST) [${dateLabel}]`);
+  }
 
   let entity;
   try {
@@ -120,7 +121,7 @@ async function fetchMessages(client, channelIdentifier, targetDate = null, batch
       }
     } catch (innerErr) {
       logger.error(`Failed to find group/channel "${channelIdentifier}": ${innerErr.message}`);
-      return [];
+      return { messages: [], maxScannedId: null, maxScannedDate: null };
     }
   }
 
@@ -128,6 +129,8 @@ async function fetchMessages(client, channelIdentifier, targetDate = null, batch
   let offsetId = 0;
   let reachedOlderMessages = false;
   let totalProcessed = 0;
+  let maxScannedId = null;
+  let maxScannedDate = null;
 
   while (!reachedOlderMessages) {
     await ensureConnected(client);
@@ -153,9 +156,14 @@ async function fetchMessages(client, channelIdentifier, targetDate = null, batch
       totalProcessed++;
       const msgDate = new Date(m.date * 1000);
 
-      if (msgDate < targetStart) {
+      if (useMinId ? m.id <= minId : msgDate < targetStart) {
         reachedOlderMessages = true;
         break;
+      }
+
+      if (maxScannedId === null || m.id > maxScannedId) {
+        maxScannedId = m.id;
+        maxScannedDate = msgDate;
       }
 
       if (m.message && m.message.trim().length > 0) {
@@ -171,8 +179,9 @@ async function fetchMessages(client, channelIdentifier, targetDate = null, batch
     offsetId = batch[batch.length - 1].id;
   }
 
-  logger.info(`Scanned ${totalProcessed} messages. Found ${allTextMessages.length} text messages from ${dateLabel}.`);
-  return allTextMessages;
+  const rangeLabel = useMinId ? `after message #${minId}` : `from ${dateLabel}`;
+  logger.info(`Scanned ${totalProcessed} messages. Found ${allTextMessages.length} text messages ${rangeLabel}.`);
+  return { messages: allTextMessages, maxScannedId, maxScannedDate };
 }
 
 module.exports = { authenticate, fetchMessages, ensureConnected };

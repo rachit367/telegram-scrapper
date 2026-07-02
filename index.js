@@ -2,24 +2,46 @@ const config = require('./src/config');
 const logger = require('./src/logger');
 const { authenticate, fetchMessages, ensureConnected } = require('./src/telegramClient');
 const { appendFilteredRawMessage, isMessageDuplicate } = require('./src/markdownGenerator');
+const { loadProgress, saveProgress } = require('./src/progress');
 
 // ─────────────────────────────────────────────────────────────────────────────
 
 async function processMessages(client) {
-  const messages = await fetchMessages(client, config.telegram.channel, config.targetDate);
+  const progress = loadProgress(config.telegram.channel);
+  const useCheckpoint = !config.targetDate && progress !== null;
+
+  const { messages, maxScannedId, maxScannedDate } = await fetchMessages(client, config.telegram.channel, {
+    targetDate: config.targetDate,
+    minId: useCheckpoint ? progress.lastMessageId : null,
+  });
+
+  const advanceCheckpoint = () => {
+    if (maxScannedId !== null && (!progress || maxScannedId > progress.lastMessageId)) {
+      saveProgress({
+        channel: config.telegram.channel,
+        lastMessageId: maxScannedId,
+        lastMessageDate: maxScannedDate,
+      });
+      logger.info(`\n📌  Checkpoint updated to message #${maxScannedId}`);
+    }
+  };
 
   if (messages.length === 0) {
-    logger.warn('No text messages found in the channel.');
+    logger.warn('No new text messages found in the channel.');
+    advanceCheckpoint();
     return;
   }
 
   let added = 0;
   let skipped = 0;
+  let errors = 0;
 
-  logger.info(`🔍  Processing all messages for: ${config.targetDate || 'Today'}`);
+  const scopeLabel = useCheckpoint
+    ? `unread since message #${progress.lastMessageId}`
+    : (config.targetDate || 'Today');
+  logger.info(`🔍  Processing all messages for: ${scopeLabel}`);
 
   for (const msg of messages) {
-    // 1. Skip if already in the Markdown file
     if (isMessageDuplicate(msg.id)) {
       skipped++;
       continue;
@@ -31,8 +53,15 @@ async function processMessages(client) {
       const wasAdded = appendFilteredRawMessage(msg);
       if (wasAdded) added++;
     } catch (err) {
+      errors++;
       logger.error(`  ❌ ERROR processing message #${msg.id}: ${err.message}`);
     }
+  }
+
+  if (errors === 0) {
+    advanceCheckpoint();
+  } else {
+    logger.warn(`\n⚠️  ${errors} message(s) failed to save. Checkpoint not advanced; they will be retried next run.`);
   }
 
   if (skipped > 0) {
