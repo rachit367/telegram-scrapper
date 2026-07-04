@@ -10,6 +10,10 @@ async function processMessages(client) {
   const progress = loadProgress(config.telegram.channel);
   const useCheckpoint = !config.targetDate && progress !== null;
 
+  if (!useCheckpoint && !config.targetDate) {
+    logger.warn('No valid checkpoint (progress.json) found — falling back to fetching ALL of today\'s messages.');
+  }
+
   const { messages, maxScannedId, maxScannedDate } = await fetchMessages(client, config.telegram.channel, {
     targetDate: config.targetDate,
     minId: useCheckpoint ? progress.lastMessageId : null,
